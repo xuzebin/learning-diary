@@ -1,5 +1,6 @@
 /**
  * A simple example showing how to use callback in C++.
+ * Reference: http://tedfelix.com/software/c++-callbacks.html
  */
 
 #include <string>
@@ -9,7 +10,6 @@ class CallbackInterface {
 public:
   virtual void callback_func(std::string something) = 0;
 };
-
 
 class Caller {
 private:
@@ -33,8 +33,6 @@ public:
     std::cout << something << std::endl;
   }
 };
-
-
 
 int main() {
   Caller caller;
