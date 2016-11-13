@@ -19,14 +19,14 @@
 To perform a rotation transformation, we need to compute the angle and rotation axis.
 Suppose there is a sphere surrounding the object (usually much larger than the object), we rotate the sphere in order to rotate the object.
 
-![]{img/arcball.png}
+![](img/arcball.png)
 
 
 A simple way to do it is to "move" the sphere to screen: think of a 3D space where x-y plane is exaclty on the screen, z-axis coming out of the screen. Thus the z coordinate of the center of the sphere is 0.
 
 The following is a sphere equation:
 
-!{]{img/sphere_equation.png}
+![](img/sphere_equation.png)
 
 - (x, y, z) is the screen coordinates of the point where the user has clicked. We already know (x, y), but we need to calculate z.
 
@@ -47,6 +47,7 @@ Cvec2 getScreenSpaceCoordFromEyeSpace(const Cvec3& eyeSpaceCoord, const Matrix4&
     return Cvec2(clippedCoord[0] * screenWidth / 2.0 + (screenWidth - 1) / 2.0, clippedCoord[1] * screenHeight / 2.0 + (screenHeight - 1) / 2.0);
 }
 ```
+
 2. Calculate the projected radius of the arcball. Note that here z is not the z indicated above. Here z is the z coordinate of the object. What's more, we assume there is only rigid body transform (RBT) in eye space, so we can just start from eye space.
 ```c
 double getScreenToEyeScale(double z, double fovy, int screenHeight) {
@@ -69,11 +70,11 @@ z = z < 0 ? 0 : z;
 
 4. Now we have (x, y, z) coordinates. We store a previous pointer `prev_pos` and a current pointer `cur_pos` of the the coordinates that the users selected on the sphere in screen space. Then we get v1 and v2 vectors by respectively subtracting two coordinates by the center of the sphere. 
 
-![]{img/arcball2.png}
+![](img/arcball2.png)
 
 To get the angle of the rotation, apply dot(v1, v2). The rotation axis is obtained by calculating cross product of v1 and v2. By the following formula, we can directly apply two quaternions without calculating dot and cross product of two vectors.
 
-!{]{img/arcball_formula.png}
+![](img/arcball_formula.png)
 
 5. Register the callback functions glutMouseFunc and glutMotionFun in main().
 
