@@ -1,6 +1,8 @@
 # Trackball and Arcball
 
-## Explanation
+![](img/arcball.png)
+
+## Introduction
   
 ### Trackball
 * Feel like moving a physical sphere in space.
@@ -14,13 +16,10 @@
   * If the user starts moving the mouse at one point and finishes at another point, the final rotation will not depend on the path the mouse took in between. 
 
 
-## Implementation
+## Explanation
 
 To perform a rotation transformation, we need to compute the angle and rotation axis.
 Suppose there is a sphere surrounding the object (usually much larger than the object), we rotate the sphere in order to rotate the object.
-
-![](img/arcball.png)
-
 
 A simple way to do it is to "move" the sphere to screen: think of a 3D space where x-y plane is exaclty on the screen, z-axis coming out of the screen. Thus the z coordinate of the center of the sphere is 0.
 
@@ -35,6 +34,10 @@ The following is a sphere equation:
 - r is the projected radius of the arcball in screen space, which we will calculate.
 
 Our goal is to get (x, y, z) whenever the user clicks at a point on the screen. We will first compute (cx, cy), and then calculate r based on scaling factor. We can get z from the above equation.
+
+
+## Implementation
+
 
 1. Convert the coordinates of the center of the sphere in eye space to screen coordinates. (Calculate (cx, cy))
 ```c
