@@ -39,7 +39,7 @@ Our goal is to get (x, y, z) whenever the user clicks at a point on the screen. 
 ## Implementation
 
 
-1. Convert the coordinates of the center of the sphere in eye space to screen coordinates. (Calculate (cx, cy))
+a. Convert the coordinates of the center of the sphere in eye space to screen coordinates. (Calculate (cx, cy))
 ```c
 Cvec2 getScreenSpaceCoordFromEyeSpace(const Cvec3& eyeSpaceCoord, const Matrix4& projectionMatrix, int screenWidth, int screenHeight) {
     if (eyeSpaceCoord[2] > -1e-8) {//z should be negative in eye space
@@ -51,7 +51,7 @@ Cvec2 getScreenSpaceCoordFromEyeSpace(const Cvec3& eyeSpaceCoord, const Matrix4&
 }
 ```
 
-2. Calculate the projected radius of the arcball. Note that here z is not the z indicated above. Here z is the z coordinate of the object. What's more, we assume there is only rigid body transform (RBT) in eye space, so we can just start from eye space.
+b. Calculate the projected radius of the arcball. Note that here z is not the z indicated above. Here z is the z coordinate of the object. What's more, we assume there is only rigid body transform (RBT) in eye space, so we can just start from eye space.
 ```c
 double getScreenToEyeScale(double z, double fovy, int screenHeight) {
     if (z > -1e-8) {
@@ -63,7 +63,7 @@ double r = screenWidth / 2;//for example, let the radius of the arcball be half 
 double cr = r / getScreenToEyeScale(entity->getPosition()[2], camera.getFov(), screenHeight);
 ```
 
-3. Now we can calculate z using the equation.
+c. Now we can calculate z using the equation.
 ```c
 double x_cx = x - cx;
 double y_cy = y - cy;
@@ -71,7 +71,7 @@ double z = cr * cr  - x_cx * x_cx - y_cy * y_cy;
 z = z < 0 ? 0 : z;
 ```
 
-4. Now we have (x, y, z) coordinates. We store a previous pointer `prev_pos` and a current pointer `cur_pos` of the the coordinates that the users selected on the sphere in screen space. Then we get v1 and v2 vectors by respectively subtracting two coordinates by the center of the sphere. 
+d. Now we have (x, y, z) coordinates. We store a previous pointer `prev_pos` and a current pointer `cur_pos` of the the coordinates that the users selected on the sphere in screen space. Then we get v1 and v2 vectors by respectively subtracting two coordinates by the center of the sphere. 
 
 ![](img/arcball2.png)
 
@@ -79,7 +79,7 @@ To get the angle of the rotation, apply dot(v1, v2). The rotation axis is obtain
 
 ![](img/arcball_formula.png)
 
-5. Register the callback functions glutMouseFunc and glutMotionFun in main().
+e. Register the callback functions glutMouseFunc and glutMotionFun in main().
 
 ```c
 Cvec3 prev_pos;
