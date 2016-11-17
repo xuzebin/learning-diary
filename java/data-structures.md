@@ -7,7 +7,7 @@
 - Capacity growth: `newCapacity = oldCapacity * 1.5`.
 
 Source code of ArrayList in Java 1.8:
-```
+```java
 public boolean add(E e) {
     ensureCapacityInternal(size + 1);  // Increments modCount!!
     elementData[size++] = e;
@@ -51,7 +51,7 @@ private void grow(int minCapacity) {
 - Capacity growth: `newCapacity = oldCapacity * 2 + 2`.
 
 A piece of source code:
-```
+```java
 void expandCapacity(int minimumCapacity) {
     int newCapacity = value.length * 2 + 2;
     if (newCapacity - minimumCapacity < 0)
