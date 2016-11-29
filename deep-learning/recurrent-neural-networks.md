@@ -1,22 +1,24 @@
 # Recurrent Neural Networks
 
-### Why Recurrent Neural Networks?
+## Why Recurrent Neural Networks?
 
-#### Feed-Forward Networks:
+### Feed-Forward Networks:
 
 - input size must be fixed.
 - different inputs are independent.
 
-#### RNN:
+### RNN:
 
 - input size can be variable.
 - inputs can have temporal dependencies (e.g. a sequence of words in a sentence).
 
-#### How RNN works
+## How RNN works
 
 - We can unroll a recurrent network into a feed-forward network.
 
-#### RNN: What is it Good for ?
+![](img/rnn_unfold.jpg)
+
+## RNN: What is it Good for ?
 
 - Learning Sequences: predict the next input of a sequence.
     - speech
