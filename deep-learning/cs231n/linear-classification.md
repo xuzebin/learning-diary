@@ -1,5 +1,14 @@
 # Linear Classification: Support Vector Machine, Softmax
 
+Contents:
+* Overview
+* Linear score function
+* Interpreting a linear classifier
+* Loss function
+    - Multiclass SVM
+    - Softmax classifier
+    - SVM vs. Softmax
+
 ## Overview
 * **Score function**: maps the raw data to class scores
 * **Loss function**: quantifies the agreement between the predicted scores and the ground truth labels.
@@ -56,8 +65,31 @@ Imagine squashing the dimensions into only 2 dimension. The geometric interpreta
 
 Ways to define the details of the loss function:
 
-### Multiclass Support Vector Machine (SVM) loss
+### [1] Multiclass Support Vector Machine (SVM) loss
 > the SVM "wants" the correct class for each image to have a score higher than the incorrect classes by some fixed margin delta.
 
 ![](img/svm_loss.png)
 
+* The threshold at zero max(0, -) function is called the **hinge loss** or the **max-margin loss**.
+
+#### Regularization
+* Extends the loss function with a **regulariaztion penalty R(W)**.
+* Most common R(W) is **L2** norm that discourages large weights through an elementwise quadratic penalty over all parameters.
+
+### [2] Softmax Classifier
+* Interpret scores as the unnormalized log probabilities for each class and replace the *hinge loss* with a **cross-entropy loss**.
+* Softmax function is used to squash the raw class scores into normalized positive values that sum to one.
+
+![](img/softmax.jpg)
+
+Gotcha:
+* The intermedia terms e^fyi may be very large due to the exponentials. 
+* It's important to use a **normalization** trick by mulitplying the top and bottom of the fraction by a constant **C** and a common choice for **C** is to set logC = -maxjfj.
+
+### SVM vs. Softmax
+* SVM classifier uses the *hinge loss*, while the Softmax classifier uses the *cross-entropy loss*.
+
+![](img/svmvssoftmax.png)
+
+* Softmax classifier provides "probabilities" for each class.
+* As weights **W** increases, the result(probabilities) computed using softmax is more **diffuse**.
