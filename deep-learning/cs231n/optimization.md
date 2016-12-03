@@ -10,6 +10,7 @@
     - Numerically with finte differences
     - Analytically with calculus
 * Gradient descent
+* Summary
 
 ## Optimization
 
@@ -43,7 +44,7 @@ Two ways to compute:
 1. Iterate over all dimensions one by one.
 2. In each interation, make s mall change **h** along the dimension and calculates the partial derivatives of the loss function.
 
-**Downside**
+**Downsides**
 * It is approximate, since we have to pick a small value of **h**, while the true gradient is defined as the limit as **h** goes to zero.
 * Not scalable, computationally expensive.
 
@@ -57,12 +58,13 @@ Gotcha:
 
 **Upside**
 * Fast to compute.
+
 **Downside**
 * more error prone to implement.
 
 Gotcha:
 * **gradient check**
-    * compute the analytic gradient and compare it to the numerical gradient to check the correctness of your implementation.
+    * compute the *analytic gradient* and compare it to the *numerical gradient* to check the correctness of your implementation.
 
 ## Gradient descent
 The procedure of repeatedly evaluating the gradient and then performing a parameter update.
@@ -98,8 +100,6 @@ while True:
     1. The data loss: computes the compatibility between the scores **f** and the labels **y**.
     2. The regularization loss: a function of the weights.
 * During Gradient Descent, we compute the gradient on the weights and use them to perform a parameter update.
-
-
 
 
 
