@@ -10,11 +10,11 @@ Define the score function **f: R^D -> R^K**,
 where D is the dimension of the image (e.g. D = 32x32x3 for a 32x32 RGB image), K is the number of distinct classes.
 
 **Linear classifier** (a linear mapping):
-                      f(xi, W, b) = Wxi + b
+> f(xi, W, b) = Wxi + b
 where **xi** ([D x 1])is the ith image with pixels all flattened out into a single column vector of shape, **W** is the matrix ([K x D]), and **b** is the vector ([K x 1]). **W** are often called **weights**, and **b** is called the **bias vector**.
 
 Combine the two sets of parameters **W** and **b** into a single matrix.
-    f(xi, W) = Wxi
+> f(xi, W) = Wxi
 where **xi** is now [(D + 1) x 1] with the extra dimension holding the contant 1, and **W** is now [K x (D + 1)] with the extra column that represents **b**.
 
 Gotcha:
@@ -39,7 +39,8 @@ Imagine squashing the dimensions into only 2 dimension. The geometric interpreta
 * Each row of weights **W** corresponds to a template (prototype) for one of the classes.
 * The score of each class for an image is obtained by comparing the template with the image using an **inner product (or dot product)** one by one to find the best fit.
 * Linear classifier is doing template matching, where the templates are learned from training data.
-* Gotcha: linear classifier is too weak to properly account for different-colored cars, but **neural networks** will be able to perform this task by developing intermediate neurons in its hidden layers that could detect specific car types (e.g. green car facing left, blue car facing front, etc), and neurons on the next layer could combine these into a more accurate car score.
+* Gotcha: 
+    - linear classifier is too weak to properly account for different-colored cars, but **neural networks** will be able to perform this task by developing intermediate neurons in its hidden layers that could detect specific car types (e.g. green car facing left, blue car facing front, etc), and neurons on the next layer could combine these into a more accurate car score.
    
 
 
