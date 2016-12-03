@@ -11,10 +11,12 @@ where D is the dimension of the image (e.g. D = 32x32x3 for a 32x32 RGB image), 
 
 **Linear classifier** (a linear mapping):
 > f(xi, W, b) = Wxi + b
+
 where **xi** ([D x 1])is the ith image with pixels all flattened out into a single column vector of shape, **W** is the matrix ([K x D]), and **b** is the vector ([K x 1]). **W** are often called **weights**, and **b** is called the **bias vector**.
 
 Combine the two sets of parameters **W** and **b** into a single matrix.
 > f(xi, W) = Wxi
+
 where **xi** is now [(D + 1) x 1] with the extra dimension holding the contant 1, and **W** is now [K x (D + 1)] with the extra column that represents **b**.
 
 Gotcha:
