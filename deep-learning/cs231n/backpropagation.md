@@ -1,5 +1,11 @@
 # Backpropagation
 
+**Contents**
+* Simple expressions and interpretation of the gradient
+* Compound expressions with chain rule; backpropagation
+* Sigmoid example; Staged computation
+* Patterns in backward flow
+* Gradients for vectorized operations
 
 ## Simple expressions and interpretation of the gradient
 
@@ -59,3 +65,61 @@ dfdy = 1.0 * dfdq # dq/dy = 1
 * For simplicity, write dq instead of df/dq, assuming the gradient is with respect to the final output.
 
 
+## Sigmoid example
+
+![](img/sigmoid_function.png)
+
+The expression describes a 2D neuron with inputs **x** and weights **w** that uses the *sigmoid activation function*.
+
+The circuit for this 2D neuron: it computes a dot product with the input (w and x) and then its activation is squashed to be in range from 0 to 1.
+
+![](img/sigmoid_circuit_diagram.png)
+
+The code of backpropagation for this neuron:
+```python
+w = [2,-3,-3] # assume some random weights and data
+x = [-1, -2]
+
+# forward pass
+dot = w[0]*x[0] + w[1]*x[1] + w[2]
+f = 1.0 / (1 + math.exp(-dot)) # sigmoid function
+
+# backward pass through the neuron (backpropagation)
+ddot = (1 - f) * f # gradient on dot variable, using the sigmoid gradient derivation
+dx = [w[0] * ddot, w[1] * ddot] # backprop into x
+dw = [x[0] * ddot, x[1] * ddot, 1.0 * ddot] # backprop into w
+# we're done! we have the gradients on the inputs to the circuit
+```
+Gotcha:
+* **staged backpropagation**
+    - break down the forward pass into stages that are easily backpropped through. (e.g. here we created an intermedia variable `dot` that holds the dot product between `w` and `x`.
+    - Cache forward pass variables
+    - Gradients add up at forks.
+    
+
+## Patterns in backward flow
+
+![](img/backprop_diagram.png)
+
+- *Sum* distributes gradients equally to all its inputs.
+- *Max* routes the gradient to the higher input.
+- *Multiply* takes the input activations, swaps them and multiplies by its gradient. (i.e. dx = y * 2 = -8, dy = x * 2 = 6)
+
+Gotcha:
+* Note that the **scale** of the data has an effect on the magnitude of the gradient for the weights.
+
+
+## Gradients for vectorized operations
+
+**Matrix-Matrix multiply gradient**:
+```python
+# forward pass
+W = np.random.randn(5, 10)
+X = np.random.randn(10, 3)
+D = W.dot(X)
+
+# now suppose we had the gradient on D from above in the circuit
+dD = np.random.randn(*D.shape) # same shape as D
+dW = dD.dot(X.T) #.T gives the transpose of the matrix
+dX = W.T.dot(dD)
+```
