@@ -15,7 +15,7 @@
 ## Modeling one neuron
 
 ### Biological motivation and connections
-> We model the *firing rate" of the neuron with an **activation function f**.
+> We model the "firing rate" of the neuron with an **activation function f**.
 
 ![](img/neuron_model.png)
 
@@ -63,7 +63,7 @@ class Neuron(object):
     - Pros and Cons:
         - (+) Greatly accelerate the convergence of stochastic gradient descent compared to the *sigmoid/tanh* functions.
         - (+) Computationally cheap: simply by threasholding a matrix of activations at zero.
-        - (-) Fragile during training and can "die" (i.e. neurons never activate across the entire training dataset) **if the learning rateis set too high**. If a large gradient flowing through a ReLU neuron could cause the weights to update (the gradient flowing through the unit will forever be *zero*) in such a way that the neuron will never activate on any data point again.
+        - (-) Fragile during training and can "die" (i.e. neurons never activate across the entire training dataset) **if the learning rate is set too high**. If a large gradient flowing through a ReLU neuron could cause the weights to update (the gradient flowing through the unit will forever be *zero*) in such a way that the neuron will never activate on any data point again.
 
 * **Leaky ReLU**
     - f(x) = ax (x < 0), x(x >= 0), where a is a small constant.
@@ -99,7 +99,9 @@ Below are two Neural Network topologies that use a stack of fully-connected laye
 **Sizing nerual networks**
 
 Two metrics to measure the size of neural networks:
+
 1. the number of neurons.
+
 2. the number of parameters.
 
 For example, for the above example networks:
