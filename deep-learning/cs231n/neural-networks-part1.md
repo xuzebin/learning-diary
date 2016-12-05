@@ -1,4 +1,4 @@
-# Neural Networks Part1
+# Neural Networks Part 1: Setting up the Architecture
 
 **Contents**
 * Modeling one neuron
