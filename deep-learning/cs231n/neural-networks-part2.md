@@ -1,8 +1,8 @@
-## Neural Networks Part 2: Setting up the Data and the Loss
+# Neural Networks Part 2: Setting up the Data and the Loss
 
-### Setting up the Data and the Model
+## Setting up the Data and the Model
 
-#### Data Prepocessing
+### Data Prepocessing
 There are 3 common forms of data prepocessing a data matrix **X**, where we assume that **X** is of size `[N x D]` (`N` is the number of data, `D` is their dimensionality).
 
 * **Mean subtraction** 
@@ -31,7 +31,7 @@ cov = np.dot(X.T, X) / X.shape[0] # get the data covariance matrix
 //TODO currently skip the middle sections
 
 
-#### Regularization (L2/L1/Maxnorm/Dropout)
+### Regularization (L2/L1/Maxnorm/Dropout)
 * **L2 Regularization**
 
 * **L1 Regularization**
