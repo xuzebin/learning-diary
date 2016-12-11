@@ -42,6 +42,8 @@ class Neuron(object):
     - The regularization loss in both SVM/Softmax cases could be interpreted as *gradual forgetting*.
 
 ### Commonly Used Activation Functions
+> Activations function is always **non-linear**, otherwise we don't need so many layers.
+
 ![](img/activation_functions.png)
 
 * **Sigmoid**
