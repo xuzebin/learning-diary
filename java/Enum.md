@@ -46,7 +46,7 @@ public static E[] values();
 public static E valueOf(String name);
 ```
 
-** What if we define an empty Enum ? **
+**What if we define an empty Enum ?**
 
 For example:
 ```java
