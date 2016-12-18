@@ -29,12 +29,12 @@ public class Book {
 
 
 ### under main/ directory
-* compile java Files: Book.java and Chapter.java
+* **compile java Files: Book.java and Chapter.java**
     
 ```
 javac src/java/edu/nyu/cs9053/Book.java lib/java/com/example/Chapter.java
 ```
-* compile java File and class file: Book.java and Chapter.class
+* **compile java File and class file: Book.java and Chapter.class**
 
 main/src/java/edu/nyu/cs9053/Book.java
 
@@ -44,7 +44,7 @@ main/lib/java/com/example/Chapter.class
 javac -cp lib/java/ src/java/edu/nyu/cs9053/Book.java
 ```
 
-* compile java file and jar file: Book.java and ChapterHelper.jar (inside jar: com/example/Chapter.class) 
+* **compile java file and jar file: Book.java and ChapterHelper.jar** (inside jar: com/example/Chapter.class) 
 
 main/src/java/edu/nyu/cs9053/Book.java
 
@@ -53,7 +53,7 @@ main/lib/java/ChapterHelper.jar
 ```
 javac -cp lib/java/ChapterHelper.jar src/java/edu/nyu/cs9053/Book.java
 ```
-* Run two class files
+* **Run two class files**
 
 main/src/java/edu/nyu/cs9053/Book.class
 
@@ -62,7 +62,7 @@ main/lib/java/com/example/Chapter.class
 ```
 java -cp src/java/:lib/java/ edu.nyu.cs9053.Book
 ```
-* Run one class file that is dependent on another jar file.
+* **Run one class file that is dependent on another jar file**
 
 main/src/java/edu/nyu/cs9053/Book.class
 
