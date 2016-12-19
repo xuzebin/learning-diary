@@ -34,7 +34,7 @@ public class Book {
 ```
 javac src/java/edu/nyu/cs9053/Book.java lib/java/com/example/Chapter.java
 ```
-* **compile java File and class file: Book.java and Chapter.class**
+* **compile java File that depends on a class file: Book.java and Chapter.class**
 
 main/src/java/edu/nyu/cs9053/Book.java
 
@@ -44,7 +44,7 @@ main/lib/java/com/example/Chapter.class
 javac -cp lib/java/ src/java/edu/nyu/cs9053/Book.java
 ```
 
-* **compile java file and jar file: Book.java and ChapterHelper.jar** (inside jar: com/example/Chapter.class) 
+* **compile java file that depends on a jar file: Book.java and ChapterHelper.jar** (inside jar: com/example/Chapter.class) 
 
 main/src/java/edu/nyu/cs9053/Book.java
 
