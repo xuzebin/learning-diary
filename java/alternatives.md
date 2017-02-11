@@ -1,6 +1,6 @@
 # A Collecion of Concise Alternative APIs for Java
 
-```
+```java
 List<List<Integer>> list = new LinkedList<>();
 
 // Very often, we need to do the following:
