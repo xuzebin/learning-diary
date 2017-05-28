@@ -5,34 +5,38 @@ from bs4 import BeautifulSoup
 import argparse
 import time
 from termcolor import colored
+import json
+import datetime
 
-def check_courses(term, class_nums):
-    for class_num in class_nums:
-        class_num = class_num.strip()
+def check_course(term, class_num):
+    url = 'https://m.albert.nyu.edu/app/catalog/classsection/NYUNV/' + str(term) + '/' + str(class_num)
+    print (url)
 
-        url = 'https://m.albert.nyu.edu/app/catalog/classsection/NYUNV/' + str(term) + '/' + str(class_num)
-        print (url)
+    content = urllib2.urlopen(url).read()
+    soup = BeautifulSoup(content, 'html.parser')
 
-        content = urllib2.urlopen(url).read()
-        soup = BeautifulSoup(content, 'html.parser')
-
-        name = soup.find('div', {'class': 'primary-head'}).text.strip()
+    name = soup.find('div', {'class': 'primary-head'}).text.strip()
         
-        content = soup.find_all('div', {'class': 'section-content'})
-        time = content[-8].find('div', {'class': 'pull-right'}).text.strip()
-        instructor = content[-9].find('div', {'class': 'pull-right'}).text.strip()
-        status = content[-1].find('div', {'class': 'pull-right'}).text.strip()
-        bar = "============================"
+    content = soup.find_all('div', {'class': 'section-content'})
+    time = content[-8].find('div', {'class': 'pull-right'}).text.strip()
+    instructor = content[-9].find('div', {'class': 'pull-right'}).text.strip()
+    status = content[-1].find('div', {'class': 'pull-right'}).text.strip()
+    bar = "============================"
 
-        if status == "Open":
-            status = colored(status, 'green')
-        else:
-            status = colored(status, 'red')
+    data = {"name": name, "status": status}
 
-        name = colored(name, 'yellow', attrs=['bold'])
-        print (bar)
-        print ("%s\n%s\n%s\n%s" % (name, instructor, time, status))
-        print (bar)
+    if status == "Open":
+        status = colored(status, 'green')
+    else:
+        status = colored(status, 'red')
+
+    name = colored(name, 'yellow', attrs=['bold'])
+    print (bar)
+    print (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    print ("%s\n%s\n%s\n%s" % (name, instructor, time, status))
+    print (bar)
+
+    return data
 
 
 if __name__ == "__main__":
@@ -50,9 +54,11 @@ if __name__ == "__main__":
 
     if loop:
         while True:
-            check_courses(term, class_nums)
+            for class_num in class_nums:
+                check_course(term, class_num)
             print ("wait 5 seconds...\n")
             time.sleep(5) # check every 5 seconds
     else:
-        check_courses(term, class_nums)
+        for class_num in class_nums:
+            check_course(term, class_num)
         
