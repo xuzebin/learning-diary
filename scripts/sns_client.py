@@ -41,14 +41,14 @@ if __name__ == "__main__":
 
     client = boto3.client(
         "sns",
-        aws_access_key_id="AKIAI4ZNF3MHHWDHADXQ",
-        aws_secret_access_key="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",
+        aws_access_key_id="",
+        aws_secret_access_key="",
         region_name="us-east-1"
     )
 
     term = 1178 # Fall2017
     class_nums = [15132, 15114]
-    phone_num = "+19086565922"
+    phone_num = ""
 
     # first msg sending test 
 #    send_sms(client, phone_num, "Test from AWS SNS")
